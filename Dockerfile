@@ -8,14 +8,17 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies with fallback for opus
-RUN npm ci --omit=dev || npm ci --omit=dev --ignore-scripts
+# Install ALL dependencies (including dev) for build
+RUN npm ci || npm ci --ignore-scripts
 
 # Copy source code
 COPY . .
 
 # Build the application
 RUN npm run build
+
+# Remove dev dependencies after build
+RUN npm prune --omit=dev
 
 # Expose port
 EXPOSE 5000
