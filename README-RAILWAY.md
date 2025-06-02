@@ -28,11 +28,19 @@ SESSION_SECRET=your_random_session_secret
 - Database URL akan otomatis tersedia
 
 ### 5. Deploy Settings
-- Build Command: `npm run build`
-- Start Command: `npm start`
-- Port: Railway auto-detect (5000)
+Railway akan otomatis detect:
+- Build: Nixpacks akan install dependencies dan build project
+- Start: `npm start`
+- Port: Auto-detect dari aplikasi
+
+## File Konfigurasi yang Sudah Dibuat:
+- **nixpacks.toml**: Konfigurasi build Railway
+- **Dockerfile**: Alternative Docker build
+- **.dockerignore**: Exclude unnecessary files
+- **.npmrc**: NPM configuration
+- **railway.json**: Railway deployment settings
 
 ## Troubleshooting:
-Jika ada error dengan @discordjs/opus, Railway akan skip optional dependencies dan bot tetap berfungsi dengan opusscript sebagai fallback.
+Jika ada error build, Railway akan menggunakan konfigurasi dari nixpacks.toml yang sudah dioptimasi untuk Discord bot.
 
 Bot akan online 24/7 dengan monitoring system terintegrasi.
