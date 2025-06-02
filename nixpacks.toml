@@ -1,0 +1,10 @@
+[phases.install]
+dependsOn = ["setup"]
+cmds = [
+    "npm ci --omit=dev --ignore-scripts",
+    "npm rebuild @discordjs/opus --update-binary || true"
+]
+
+[variables]
+NODE_ENV = "production"
+NPM_CONFIG_PRODUCTION = "true"
