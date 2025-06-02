@@ -21,7 +21,12 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 # Expose port
-EXPOSE 5000
+EXPOSE $PORT
+ENV PORT=5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:$PORT/ || exit 1
 
 # Start the application
 CMD ["npm", "start"]
